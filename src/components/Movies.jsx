@@ -32,7 +32,7 @@ function Movies({addToWatchList, removeFromWatchList, watchList}) {
   }, [pageNum]);
   return (
     <div className="p-5">
-      <div className="text-3xl m-5 font-bold text-center">Courses</div>
+      <div className="text-3xl m-5 font-bold text-center">Movies</div>
 
       <div className="flex flex-row justify-between flex-wrap my-7">
         {movies.map((movie) => {
