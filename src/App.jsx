@@ -6,9 +6,16 @@ import Movies from "./components/Movies";
 import WatchList from "./components/WatchList";
 import BannerSlider from "./components/BannerSlider";
 import MovieDetails from "./components/MovieDetails";
+import Popular from "./components/Popular";
+import TermsPage from "./components/TermsPage";
 import { AppContext } from "./context/AppContext";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TopRated from "./components/TopRated";
+import UpcomingMovies from "./components/UpcomingMovies";
+import SubscribePage from "./components/SubscribePage";
+import NewRealeased from "./components/NewRealeased";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   const [watchList, setWatchList] = useState([]);
@@ -20,20 +27,17 @@ function App() {
   };
 
   const removeFromWatchList = (movie) => {
-    let filterWatchList = setWatchList.filter((item) => {
-      return item.id !== movie.id;
-    });
-
-    setWatchList(filterWatchList);
-    localStorage.setItem("moviesApp", JSON.stringify(filterWatchList));
+    let filteredWatchList = watchList.filter((item) => item.id !== movie.id);
+    setWatchList(filteredWatchList);
+    localStorage.setItem("moviesApp", JSON.stringify(filteredWatchList));
   };
 
   useEffect(() => {
     let newLocalStorage = localStorage.getItem("moviesApp");
-    if (!newLocalStorage) {
-      return;
+    if (newLocalStorage) {
+      return setWatchList(JSON.parse(newLocalStorage));
     }
-    setWatchList(JSON.parse(newLocalStorage));
+    // setWatchList(JSON.parse(newLocalStorage));
   }, []);
   return (
     <>
@@ -53,7 +57,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <BannerSlider watchList={watchList}/>{" "}
+                  <BannerSlider watchList={watchList} />{" "}
                   <Movies
                     watchList={watchList}
                     addToWatchList={addToWatchList}
@@ -68,16 +72,23 @@ function App() {
               element={<WatchList watchList={watchList} />}
             />
 
-            <Route
-              path="/moviesdetailspage"
-              element={
-                <MovieDetails
-                  watchList={watchList}
-                  setWatchList={setWatchList}
-                  removeFromWatchList={removeFromWatchList}
-                />
-              }
-            />
+            <Route path="/newreleased" element={<NewRealeased />} />
+
+            <Route path="/popular" element={<Popular />} />
+
+            <Route path="/toprated" element={<TopRated />} />
+
+            <Route path="/upcomingmovies" element={<UpcomingMovies />} />
+
+            <Route path="/movies/:id" element={<MovieDetails />} />
+
+            <Route path="/search" element={<SearchResults />} />
+
+            <Route path="/subscribepage" element={<SubscribePage />} />
+
+            <Route path="/terms" element={<TermsPage />} />
+
+            <Route path="/moviesdetailspage" element={<MovieDetails />} />
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>
