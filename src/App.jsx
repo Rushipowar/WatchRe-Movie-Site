@@ -16,6 +16,7 @@ import UpcomingMovies from "./components/UpcomingMovies";
 import SubscribePage from "./components/SubscribePage";
 import NewRealeased from "./components/NewRealeased";
 import SearchResults from "./components/SearchResults";
+import BlogPage from "./components/BlogPage"
 
 function App() {
   const [watchList, setWatchList] = useState([]);
@@ -88,7 +89,7 @@ function App() {
 
             <Route path="/terms" element={<TermsPage />} />
 
-            <Route path="/moviesdetailspage" element={<MovieDetails />} />
+            <Route path="/blogpage" element={<BlogPage />} />
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

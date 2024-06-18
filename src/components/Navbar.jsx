@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Dropdown } from "flowbite-react";
 
 function Navbar() {
-
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -20,20 +19,30 @@ function Navbar() {
         Watch<span className="font-bold text-lg text-yellow-300">Re.</span>
       </h1>
 
-      <Link to="/" className="font-bold pl-32 text-lg hover:text-yellow-300">
+      <Link
+        to="/"
+        className="font-bold pl-32 text-lg hover:text-yellow-300 duration-200"
+      >
         Home
       </Link>
 
       <Link
         to="/watchlist"
-        className="font-bold pl-3 text-lg hover:text-yellow-300"
+        className="font-bold pl-3 text-lg hover:text-yellow-300 duration-200"
       >
         WatchList
       </Link>
 
-      <Dropdown label="Movies" inline>
-        <Dropdown.Item className="hover:text-yellow-300 font-bold">
-        <Link
+      <Dropdown
+        dismissOnClick={false}
+        renderTrigger={() => (
+          <span className="font-bold text-lg hover:text-yellow-300 duration-200 pl-3 cursor-pointer">
+            Movies
+          </span>
+        )}
+      >
+        <Dropdown.Item className="hover:text-yellow-300 font-bold ">
+          <Link
             to="/newreleased"
             className="font-bold pl-3 text-lg hover:text-yellow-300"
           >
@@ -66,12 +75,30 @@ function Navbar() {
         </Dropdown.Item>
       </Dropdown>
 
-      <Dropdown label="Pages" inline>
+      <Dropdown
+        dismissOnClick={false}
+        renderTrigger={() => (
+          <span className="font-bold text-lg hover:text-yellow-300 duration-200 pl-3 cursor-pointer">
+            Pages
+          </span>
+        )}
+      >
         <Dropdown.Item className="hover:text-yellow-300 font-bold">
-          Blog
+          <Link
+            to="/blogpage"
+            className="font-bold pl-3 text-lg hover:text-yellow-300"
+          >
+            {" "}
+            Blog{" "}
+          </Link>
         </Dropdown.Item>
         <Dropdown.Item className="hover:text-yellow-300 font-bold">
-          Pricing
+          <Link
+            to="/subscribepage"
+            className="font-bold pl-3 text-lg hover:text-yellow-300"
+          >
+            Pricing
+          </Link>
         </Dropdown.Item>
         <Dropdown.Item className="hover:text-yellow-300 font-bold">
           Contact Us
@@ -86,7 +113,10 @@ function Navbar() {
         </Dropdown.Item>
       </Dropdown>
 
-      <form onSubmit={handleSearch} className="searchbar flex gap-4 align-middle">
+      <form
+        onSubmit={handleSearch}
+        className="searchbar flex gap-4 align-middle"
+      >
         <input
           type="text"
           placeholder="Search Movies..."
@@ -94,7 +124,10 @@ function Navbar() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button type="submit" className="fas fa-search self-center cursor-pointer hover:scale-125 hover:text-yellow-300 transition"></button>
+        <button
+          type="submit"
+          className="fas fa-search self-center cursor-pointer hover:scale-125 hover:text-yellow-300 transition"
+        ></button>
       </form>
 
       <div className="account">
@@ -103,11 +136,7 @@ function Navbar() {
 
       <div className="subscribeBtn">
         <button className="text-white bg-yellow-300 w-0 hover:px-2 hover:py-1 text-center hover:w-40 duration-700 cursor-pointer rounded-md ml-4 font-extrabold">
-          <Link
-            to="/subscribepage"
-          >
-            Subscribe
-          </Link>
+          <Link to="/subscribepage">Subscribe</Link>
         </button>
       </div>
     </div>

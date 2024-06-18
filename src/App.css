@@ -11,3 +11,16 @@ body{
     border-radius: 10px;
     background-color: rgb(255, 217, 0);
 }
+.movie-poster {
+    width: 80%;
+    height: 90vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} 
+.carousel{
+    height: 500px;
+}
+.termcontent{
+    width: 70%;
+}
